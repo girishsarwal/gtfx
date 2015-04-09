@@ -33,6 +33,13 @@ namespace gtfx.designer
             Output = new OutputWindow();
             Inspector = new InspectorWindow();
 
+            Explorer.EntitySelected += Explorer_EntitySelected;
+
+        }
+
+        void Explorer_EntitySelected(object sender, ExplorerWindow.EntitySelectedEventArgs e)
+        {
+            Inspector.Target = e.EntitySelected;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -144,10 +151,7 @@ namespace gtfx.designer
             explorerToolStripMenuItem.Checked = true;
             designViewportToolStripMenuItem.Checked = true;
 
-            ((SceneNodeCollection)SceneManager.Instance.CurrentScene.Root).Add(new SceneNode()
-            {
-                GameObject = new GameObject()
-            });
+            SceneManagerFactory.CreateFPS();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)

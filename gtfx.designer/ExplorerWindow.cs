@@ -12,32 +12,52 @@ namespace gtfx.designer
 {
     public partial class ExplorerWindow : Form
     {
+        public event EventHandler<EntitySelectedEventArgs> EntitySelected;
+        public class EntitySelectedEventArgs
+        {
+            public object EntitySelected;
+            public EntitySelectedEventArgs(object es)
+            {
+                EntitySelected = es;
+            }
+        }
         public ExplorerWindow()
         {
             InitializeComponent();
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
         private void Explorer_Load(object sender, EventArgs e)
         {
-            SceneManager.Instance.CurrentScene.SceneChanged += CurrentScene_SceneChanged;
+            SceneManager.Instance.ItemAdded += Instance_ItemAdded;
+            ShaderManager.Instance.ItemAdded += Instance_ShaderItemAdded;
         }
 
-        void CurrentScene_SceneChanged(object sender, EventArgs e)
+        void Instance_ShaderItemAdded(object sender, ShaderProgram e)
         {
-            treeViewEntities.Nodes.Add(SceneManager.Instance.CurrentScene.ToString());    
+            
         }
 
-        
-        private void Matetrials_Click(object sender, EventArgs e)
+        void Instance_ItemAdded(object sender, ISceneNode e)
         {
+            TreeNode node = new TreeNode()
+            {
+                Text = String.Format("{0}", e.Name),
+                Tag = e
+            };
+            treeViewEntities.Nodes.Add(node);        
+        }
+
+        private void treeViewEntities_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            OnEntitySelected(new EntitySelectedEventArgs(e.Node.Tag));
+        }
+        protected void OnEntitySelected(EntitySelectedEventArgs args)
+        {
+            if (EntitySelected != null)
+            {
+                EntitySelected(this, args);
+            }
 
         }
-        
-
     }
 }

@@ -8,7 +8,15 @@ namespace gtfx
 {
     public interface ISceneNode
     {
-        event EventHandler Changed;
+        Boolean CanBeNamed
+        {
+            get;
+        }
+        String Name 
+        { 
+            get; 
+            set; 
+        }
         GameObject GameObject
         {
             get;

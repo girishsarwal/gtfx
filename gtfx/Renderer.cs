@@ -58,7 +58,6 @@ namespace gtfx
         
         public void Initialize(String title, IntPtr handle)
         {
-            
             SlimDX.Direct3D11.Device.CreateWithSwapChain(SlimDX.Direct3D11.DriverType.Hardware, DeviceCreationFlags.None, new SwapChainDescription()
             {
                 BufferCount = 1,

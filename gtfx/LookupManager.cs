@@ -8,6 +8,7 @@ namespace gtfx
 {
     public class LookupManager<T, V>
     {
+        public event EventHandler<V> ItemAdded;
         public Boolean Initialized { get; set; }
         private Dictionary<T, V> Items
         {
@@ -45,6 +46,7 @@ namespace gtfx
             set
             {
                 Items.Add(key, value);
+                OnItemAdded(value);
             }
         }
 
@@ -53,6 +55,14 @@ namespace gtfx
         {
             Initialized = false;
             Items = new Dictionary<T, V>();
+        }
+
+        protected void OnItemAdded(V item)
+        {
+            if (ItemAdded != null)
+            {
+                ItemAdded(this, item);
+            }
         }
     }
 }

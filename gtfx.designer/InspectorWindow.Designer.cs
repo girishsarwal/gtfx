@@ -28,14 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pgProperties = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
-            // Inspector
+            // pgProperties
+            // 
+            this.pgProperties.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pgProperties.Location = new System.Drawing.Point(0, 0);
+            this.pgProperties.Name = "pgProperties";
+            this.pgProperties.Size = new System.Drawing.Size(295, 420);
+            this.pgProperties.TabIndex = 0;
+            // 
+            // InspectorWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(295, 420);
-            this.Name = "Inspector";
+            this.Controls.Add(this.pgProperties);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Name = "InspectorWindow";
             this.Text = "Inspector";
             this.Load += new System.EventHandler(this.Inspector_Load);
             this.ResumeLayout(false);
@@ -43,5 +54,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.PropertyGrid pgProperties;
     }
 }

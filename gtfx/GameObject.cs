@@ -32,13 +32,10 @@ namespace gtfx
             Components = new ComponentCollection();
             Components.Add(new TransformComponent("Transform", this));
             Id = GetNextId();
-            Name = String.Format("GameObject {0}", Id);
-            
         }
 
         public Int32 Id { get; private set; }
-        public String Name { get; set; }
-
+        
         public T GetComponent<T>(string name)
         {
             try
@@ -55,18 +52,6 @@ namespace gtfx
         private static Int32 GetNextId()
         {
             return ++__nextId;
-        }
-
-        public static GameObject FindByName(string name)
-        {
-            try
-            {
-                return SceneManager.Instance[name].GameObject;
-            }
-            catch (KeyNotFoundException)
-            {
-                return null;
-            }
         }
 
         public void Update(UpdateEventArgs args)

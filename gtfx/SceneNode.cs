@@ -9,9 +9,15 @@ namespace gtfx
     public class SceneNode
         : ISceneNode
     {
+        internal SceneNode(string name)
+            : this()
+        {
+            Name = name;
+            CanBeNamed = false;
+        }
         public SceneNode()
         {
-            
+            CanBeNamed = true;
         }
 
         public event EventHandler Changed;
@@ -25,6 +31,25 @@ namespace gtfx
         {
             if (Changed != null)
                 Changed(this, EventArgs.Empty);
+        }
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                if (CanBeNamed)
+                    name = value;
+            }
+        }
+
+        public bool CanBeNamed
+        {
+            get;
+            internal set;
         }
     }
 }

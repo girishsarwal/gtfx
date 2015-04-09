@@ -27,7 +27,7 @@ namespace gtfx
         }
         private ShaderManager()
         {
-
+            
         }
 
         public override void Initialize()

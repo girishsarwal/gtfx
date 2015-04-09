@@ -35,6 +35,18 @@ namespace gtfx
             
         }
 
+        public static GameObject FindByName(string name)
+        {
+            try
+            {
+                return SceneManager.Instance[name].GameObject;
+            }
+            catch (KeyNotFoundException)
+            {
+                return null;
+            }
+        }
+
     }
     
 }

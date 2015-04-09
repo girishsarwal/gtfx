@@ -11,16 +11,20 @@ namespace gtfx
         : Collection<ISceneNode>
         , ISceneNode
     {
+        internal SceneNodeCollection(string name)
+            : this()
+        {
+            Name = name;
+            CanBeNamed = false;
+        }
         public SceneNodeCollection()
         {
-            
+            CanBeNamed = true;
         }
         protected override void InsertItem(int index, ISceneNode item)
         {
             /** Add this item to the entity manager **/
-            if(item.GameObject != null)
-                SceneManager.Instance[item.GameObject.Name] = item;
-            OnChanged();
+            SceneManager.Instance[item.Name] = item;
             base.InsertItem(index, item);
 
         }
@@ -29,8 +33,6 @@ namespace gtfx
             /** remove this itme from the entity manager **/
             base.RemoveItem(index);
         }
-
-        public event EventHandler Changed;
 
         public GameObject GameObject
         {
@@ -52,11 +54,25 @@ namespace gtfx
                 item.Update(args);   
             }
         }
-
-        protected void OnChanged()
+        private string name;
+        public string Name
         {
-            if (Changed != null)
-                Changed(this, EventArgs.Empty);
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                if (CanBeNamed)
+                    name = value;
+            }
+        }
+
+        public bool CanBeNamed
+        {
+            get;
+            internal set;
         }
     }
 }
