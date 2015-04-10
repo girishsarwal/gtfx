@@ -32,6 +32,11 @@ namespace gtfx.designer
         {
             
         }
+
+        private void pgProperties_Click(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

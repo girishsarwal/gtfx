@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,25 +9,30 @@ using System.Threading.Tasks;
 namespace gtfx
 {
     public class SceneNodeCollection
-        : Collection<ISceneNode>
-        , ISceneNode
+        : Collection<SceneNode>
     {
-        internal SceneNodeCollection(string name)
-            : this()
+        public SceneNodeCollection(SceneNode parent)
         {
-            Name = name;
-            CanBeNamed = false;
+            Parent = parent;
         }
-        public SceneNodeCollection()
+        //public event EventHandler<SceneNodeCollectionChangedEventArgs> Changed;
+        public SceneNode Parent
         {
-            CanBeNamed = true;
+            get;
+            set;
         }
-        protected override void InsertItem(int index, ISceneNode item)
+        protected override void InsertItem(int index, SceneNode item)
         {
             /** Add this item to the entity manager **/
+            item.Parent = this.Parent;
             SceneManager.Instance[item.Name] = item;
+            OnChanged(new SceneNodeCollectionChangedEventArgs(item, SceneNodeChangedEvent.NodeAdded));
             base.InsertItem(index, item);
+        }
 
+        protected void OnChanged(SceneNodeCollectionChangedEventArgs args)
+        {
+            Parent.OnChanged(new SceneNodeChangedEventArgs(Parent, args.Item, SceneNodeChangedEvent.NodeAdded));
         }
         protected override void RemoveItem(int index)
         {
@@ -34,45 +40,12 @@ namespace gtfx
             base.RemoveItem(index);
         }
 
-        public GameObject GameObject
-        {
-            get
-            {
-                /** return the gameobject on the first item **/
-                return null;
-            }
-            set
-            {
-                value = null;
-            }
-        }
-
         public void Update(UpdateEventArgs args)
         {
-            foreach (ISceneNode item in Items)
+            foreach (SceneNode item in Items)
             {
                 item.Update(args);   
             }
-        }
-        private string name;
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-
-            set
-            {
-                if (CanBeNamed)
-                    name = value;
-            }
-        }
-
-        public bool CanBeNamed
-        {
-            get;
-            internal set;
         }
     }
 }

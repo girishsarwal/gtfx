@@ -10,18 +10,18 @@ namespace gtfx
     {
         public static void CreateFPS()
         {
-            SceneNodeCollection nodeRoot = (SceneNodeCollection)SceneManager.Instance.CurrentScene.Root;
+            SceneNode nodeRoot = (SceneNode)SceneManager.Instance.CurrentScene.Root;
             SceneNode sceneSkyBox = new SceneNode("BACKGROUNDS");
-            SceneNodeCollection sceneObjectsRoot = new SceneNodeCollection("SCENE OBJECTS");
-            SceneNodeCollection sceneCameras = new SceneNodeCollection("CAMERAS");
-            SceneNodeCollection sceneGuiElements = new SceneNodeCollection() { Name = "GUI OBJECTS" };
-            SceneNodeCollection sceneCursors = new SceneNodeCollection() { Name = "OVERLAYS" };
+            SceneNode sceneObjectsRoot = new SceneNode("SCENE OBJECTS");
+            SceneNode sceneCameras = new SceneNode("CAMERAS");
+            SceneNode sceneGuiElements = new SceneNode() { Name = "GUI OBJECTS" };
+            SceneNode sceneCursors = new SceneNode() { Name = "OVERLAYS" };
 
-            nodeRoot.Add(sceneSkyBox);
-            nodeRoot.Add(sceneObjectsRoot);
-            nodeRoot.Add(sceneCameras);
-            nodeRoot.Add(sceneGuiElements);
-            nodeRoot.Add(sceneCursors);
+            nodeRoot.Children.Add(sceneSkyBox);
+            //nodeRoot.Children.Add(sceneObjectsRoot);
+            //nodeRoot.Children.Add(sceneCameras);
+            //nodeRoot.Children.Add(sceneGuiElements);
+            //nodeRoot.Children.Add(sceneCursors);
         }
     }
 }

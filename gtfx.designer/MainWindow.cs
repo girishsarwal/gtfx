@@ -145,13 +145,14 @@ namespace gtfx.designer
 
         private void defaultLayoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolboxToolStripMenuItem.Checked = true;
+            //toolboxToolStripMenuItem.Checked = true;
             inspectorToolStripMenuItem.Checked = true;
-            consoleToolStripMenuItem.Checked = true;
+            //consoleToolStripMenuItem.Checked = true;
             explorerToolStripMenuItem.Checked = true;
-            designViewportToolStripMenuItem.Checked = true;
+            //designViewportToolStripMenuItem.Checked = true;
 
             SceneManagerFactory.CreateFPS();
+            Explorer.ReloadExplorer();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)

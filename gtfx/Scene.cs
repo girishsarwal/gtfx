@@ -9,7 +9,7 @@ namespace gtfx
     public class Scene
     {
         public event EventHandler SceneChanged;
-        public ISceneNode Root
+        public SceneNode Root
         {
             get;
             private set;
@@ -31,7 +31,10 @@ namespace gtfx
         }
         public Scene()
         {
-            Root = new SceneNodeCollection();
+            Root = new SceneNode("ROOT")
+            {
+                GameObject = new GameObject()
+            };
         }
     }
 }

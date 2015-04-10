@@ -38,6 +38,7 @@
             this.pgProperties.Name = "pgProperties";
             this.pgProperties.Size = new System.Drawing.Size(295, 420);
             this.pgProperties.TabIndex = 0;
+            this.pgProperties.Click += new System.EventHandler(this.pgProperties_Click);
             // 
             // InspectorWindow
             // 

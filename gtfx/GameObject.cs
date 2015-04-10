@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace gtfx
 {
+    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class GameObject
         : IStateMachine
     {
+        [Category("State Machine")]
         public IState CurrentState
         {
             get;
             set;
         }
-
+        [Category("State Machine")]
         public IState PreviousState
         {
             get;
             set;
         }
-
+        [Category("Components")]
         public ComponentCollection Components
         {
             get;
@@ -33,7 +36,7 @@ namespace gtfx
             Components.Add(new TransformComponent("Transform", this));
             Id = GetNextId();
         }
-
+        [Browsable(false)]
         public Int32 Id { get; private set; }
         
         public T GetComponent<T>(string name)

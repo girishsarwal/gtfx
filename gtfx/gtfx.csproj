@@ -48,9 +48,9 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectComponent.cs" />
+    <Compile Include="GameObjectTypeConverter.cs" />
     <Compile Include="Geometry\Plane.cs" />
     <Compile Include="IComponent.cs" />
-    <Compile Include="ISceneNode.cs" />
     <Compile Include="IState.cs" />
     <Compile Include="IStateMachine.cs" />
     <Compile Include="LookupManager.cs" />
@@ -65,7 +65,10 @@
     <Compile Include="SceneManager.cs" />
     <Compile Include="SceneManagerFactory.cs" />
     <Compile Include="SceneNode.cs" />
+    <Compile Include="SceneNodeChangedEvent.cs" />
+    <Compile Include="SceneNodeChangedEventArgs.cs" />
     <Compile Include="SceneNodeCollection.cs" />
+    <Compile Include="SceneNodeCollectionChangedEventArgs.cs" />
     <Compile Include="ShaderManager.cs" />
     <Compile Include="ShaderProgram.cs" />
     <Compile Include="StateManager.cs" />

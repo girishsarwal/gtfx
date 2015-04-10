@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace gtfx
 {
     public class SceneManager
-        : LookupManager<string, ISceneNode>
+        : LookupManager<string, SceneNode>
     {
         private static SceneManager _instance = null;
         public static SceneManager Instance
